@@ -19,10 +19,8 @@
   overflow: hidden;
   border-right: 2px solid #ffffff;
   white-space: nowrap;
-  max-width: 100%;
-  animation: typing 4s steps(60, end) infinite, blink 0.75s step-end infinite;
+  animation: typing 6s steps(85) forwards, blink 0.75s step-end infinite;
 }
-
 /* Responsive untuk HP */
 @media (max-width: 640px) {
   .typewriter {
@@ -31,8 +29,8 @@
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from { width: 0 }
+  to { width: 85ch }
 }
 
 @keyframes blink {
