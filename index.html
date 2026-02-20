@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - I Gusti Lanang Wicaksana</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; }
+    .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+    
+    /* Typewriter effect */
+    .typewriter {
+      overflow: hidden;
+      border-right: 2px solid #ffffff;
+      white-space: nowrap;
+      animation: typing 4s steps(100, end) infinite, blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      0%, 100% { width: 0; }
+      50%, 90% { width: 100%; }
+    }
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: #ffffff; }
+    }
+    
+    /* Smooth transitions */
+    .page-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .page-section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Menu animation */
+    .menu-dropdown {
+      transform: scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+    .menu-dropdown.open {
+      transform: scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    /* Award card hover */
+    .award-card {
+      transition: all 0.3s ease;
+    }
+    .award-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Experience timeline */
+    .timeline-item {
+      padding-left: 0;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.open .modal-content {
+      transform: scale(1);
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1a1a1a; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-black text-white overflow-auto">
+  <div id="app-wrapper" class="w-full h-full min-h-full bg-black"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
+    <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center"><span class="font-bebas text-2xl tracking-wider text-white">Gung Wi</span> <!-- Menu Indicator and Hamburger -->
+     <div class="flex items-center gap-4">
+      <div id="menuIndicator" class="flex items-center gap-2 text-gray-400 text-sm min-w-[100px]">
+       <svg id="indicatorIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+       </svg><span id="indicatorText">Home</span>
+      </div>
+      <div class="relative"><button id="menuBtn" class="p-2 hover:bg-gray-800 rounded-lg transition-colors" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg></button> <!-- Dropdown -->
+       <div id="menuDropdown" class="menu-dropdown absolute right-0 top-full mt-2 bg-gray-900 border border-gray-700 rounded-lg shadow-xl overflow-hidden w-36"><button data-page="home" class="menu-item w-full px-4 py-3 text-left text-sm hover:bg-emerald-500/20 hover:text-emerald-400 transition-colors flex items-center gap-2">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+         </svg> Home </button> <button data-page="experience" class="menu-item w-full px-4 py-3 text-left text-sm hover:bg-emerald-500/20 hover:text-emerald-400 transition-colors flex items-center gap-2">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+         </svg> Experience </button> <button data-page="awards" class="menu-item w-full px-4 py-3 text-left text-sm hover:bg-emerald-500/20 hover:text-emerald-400 transition-colors flex items-center gap-2">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+         </svg> Awards </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Main Content -->
+   <main class="pt-20 pb-12 px-6">
+    <div class="max-w-4xl mx-auto"><!-- HOME PAGE -->
+     <section id="homePage" class="page-section active"><!-- Profile Photo -->
+      <div class="flex justify-center mb-6">
+       <div class="w-36 h-36 rounded-full overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1GV0SytFF5oJoKk_qWTFVsmkj7nsnHZcu=s1024" alt="Profile Photo" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Profile image failed to load:', this.src); this.style.display='none';">
+       </div>
+      </div><!-- Social Links -->
+      <div class="flex justify-center gap-4 mb-8"><a href="mailto:ggungwi08@gmail.com" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-900 hover:bg-white/10 rounded-full transition-all hover:scale-110" aria-label="Email">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        </svg></a> <a href="https://www.instagram.com/gungwi_17?igsh=MTN3eGdxeXRramszOA==" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-900 hover:bg-white/10 rounded-full transition-all hover:scale-110" aria-label="Instagram">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+      </div><!-- Name & Title -->
+      <div class="text-center mb-10">
+       <h1 id="nameText" class="font-bebas text-4xl md:text-5xl tracking-wide text-white mb-2">Hi I'm I Gusti Lanang Wicaksana</h1>
+       <p id="titleText" class="text-gray-400 text-lg">Accounting Student at SMK Negeri 2 Denpasar</p>
+      </div><!-- About Section -->
+      <div class="bg-gray-900/50 rounded-2xl p-6 md:p-8 mb-8 border border-gray-800">
+       <h2 id="aboutHeader" class="font-bebas text-2xl tracking-wide text-white mb-4 text-center">Tentang Saya</h2>
+       <div class="space-y-4 text-gray-300 leading-relaxed text-sm md:text-base">
+        <p>Halo, perkenalkan, saya biasa dipanggil Gung Wi. Saat ini saya merupakan siswa jurusan Akuntansi di SMK Negeri 2 Denpasar, Bali, Indonesia, dengan minat dan komitmen yang kuat dalam bidang akuntansi serta ekonomi.</p>
+        <p>Sejak memilih jurusan akuntansi, saya semakin tertarik untuk memahami secara mendalam proses pencatatan transaksi keuangan, penyusunan laporan keuangan, hingga analisis informasi keuangan sebagai dasar pengambilan keputusan yang tepat dan strategis. Saya menyadari bahwa ketelitian, kedisiplinan, serta tanggung jawab merupakan kunci utama dalam bidang ini, sehingga saya selalu berusaha bekerja secara sistematis, terstruktur, dan akurat dalam setiap tugas yang saya kerjakan.</p>
+        <p>Selain menguasai aspek teknis, saya juga terus melatih kemampuan berpikir analitis dan kritis dalam memahami berbagai permasalahan ekonomi maupun keuangan. Saya percaya bahwa kemampuan tersebut sangat penting untuk mendukung profesionalisme di dunia kerja. Saya memiliki motivasi yang tinggi untuk terus belajar, baik melalui kegiatan akademik di sekolah maupun melalui pengalaman tambahan yang dapat memperluas wawasan dan meningkatkan keterampilan praktis.</p>
+        <p>Ke depannya, saya bertekad untuk terus mengembangkan kompetensi di bidang akuntansi dan ekonomi, baik melalui pendidikan lanjutan maupun pengalaman kerja profesional. Saya ingin menjadi individu yang tidak hanya kompeten secara akademik, tetapi juga memiliki integritas, etos kerja yang baik, serta mampu berkontribusi secara positif di lingkungan kerja dan masyarakat.</p>
+        <p>Bagi saya, setiap proses pembelajaran adalah kesempatan untuk bertumbuh. Dengan semangat disiplin, kerja keras, dan kemauan untuk terus berkembang, saya siap menghadapi tantangan serta mempersiapkan diri untuk masa depan yang lebih baik di bidang akuntansi dan ekonomi.</p>
+       </div>
+      </div><!-- Quote with Typewriter Effect -->
+      <div class="bg-gradient-to-r from-gray-800/30 to-transparent rounded-xl p-6 border-l-4 border-white">
+       <div class="flex items-start gap-3">
+        <svg class="w-8 h-8 text-white flex-shrink-0 mt-1" fill="currentColor" viewbox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+        </svg>
+        <p id="quoteText" class="typewriter text-gray-200 italic text-sm md:text-base">Accounting teaches me that every number tells a story, and every decision shapes the future.</p>
+       </div>
+      </div>
+     </section><!-- EXPERIENCE PAGE -->
+     <section id="experiencePage" class="page-section hidden">
+      <h2 class="font-bebas text-4xl tracking-wide text-center mb-10"><span class="text-white">My </span><span class="text-white">Experience</span></h2>
+      <div class="space-y-8"><!-- Experience 1 -->
+       <div class="timeline-item relative">
+        <div class="bg-gray-900/70 rounded-xl p-6 border border-gray-800 hover:border-white/50 transition-colors">
+         <div class="flex flex-wrap items-center gap-3 mb-3"><span class="px-3 py-1 bg-white/10 text-gray-200 text-xs font-semibold rounded-full">Current</span> <span class="text-gray-500 text-sm">February 2026 - Present</span>
+         </div>
+         <h3 class="text-xl font-bold text-white mb-2">Tax Administration Intern</h3>
+         <p class="text-gray-300 font-medium">Accounting Teaching Factory SMK Negeri 2 Denpasar</p>
+        </div>
+       </div><!-- Experience 2 -->
+       <div class="timeline-item relative">
+        <div class="bg-gray-900/70 rounded-xl p-6 border border-gray-800 hover:border-white/50 transition-colors">
+         <div class="flex flex-wrap items-center gap-3 mb-3"><span class="px-3 py-1 bg-white/10 text-gray-200 text-xs font-semibold rounded-full">Current</span> <span class="text-gray-500 text-sm">December 2025 - Present</span>
+         </div>
+         <h3 class="text-xl font-bold text-white mb-2">Accounting &amp; Accurate System Assistant</h3>
+         <p class="text-gray-300 font-medium">PT. Bumi Laut Pertiwi</p>
+        </div>
+       </div>
+      </div>
+     </section><!-- AWARDS PAGE -->
+     <section id="awardsPage" class="page-section hidden">
+      <h2 class="font-bebas text-4xl tracking-wide text-center mb-10"><span class="text-white">My </span><span class="text-white">Awards</span></h2>
+      <div class="grid gap-6"><!-- Award 1 -->
+       <div class="award-card bg-gray-900/70 rounded-xl p-6 border border-gray-800 cursor-pointer" onclick="openModal('award1')">
+        <div class="flex items-start justify-between gap-4">
+         <div class="flex-1">
+          <div class="flex items-center gap-3 mb-3">
+           <div class="w-12 h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center">
+            <svg class="w-8 h-8 text-yellow-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+           </div>
+           <div><span class="text-yellow-500 font-bold text-lg">Juara 3</span>
+            <p class="text-gray-500 text-sm">February 2026</p>
+           </div>
+          </div>
+          <h3 class="text-white font-semibold text-lg mb-1">Warmadewa Accounting Competition</h3>
+          <p class="text-gray-400 text-sm">by Universitas Warmadewa</p>
+          <p class="text-gray-500 text-xs mt-2 italic">Klik untuk melihat sertifikat</p>
+         </div>
+        </div>
+       </div><!-- Award 2 -->
+       <div class="award-card bg-gray-900/70 rounded-xl p-6 border border-gray-800 cursor-pointer" onclick="openModal('award2')">
+        <div class="flex items-start justify-between gap-4">
+         <div class="flex-1">
+          <div class="flex items-center gap-3 mb-3">
+           <div class="w-12 h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center">
+            <svg class="w-8 h-8 text-yellow-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+           </div>
+           <div><span class="text-yellow-500 font-bold text-lg">Juara Harapan 3</span>
+            <p class="text-gray-500 text-sm">January 2026</p>
+           </div>
+          </div>
+          <h3 class="text-white font-semibold text-lg mb-1">Olimpiade Akuntansi &amp; Pajak</h3>
+          <p class="text-gray-400 text-sm">by UNHI</p>
+          <p class="text-gray-500 text-xs mt-2 italic">Klik untuk melihat sertifikat</p>
+         </div>
+        </div>
+       </div><!-- Award 3 -->
+       <div class="award-card bg-gray-900/70 rounded-xl p-6 border border-gray-800 cursor-pointer" onclick="openModal('award3')">
+        <div class="flex items-start justify-between gap-4">
+         <div class="flex-1">
+          <div class="flex items-center gap-3 mb-3">
+           <div class="w-12 h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center">
+            <svg class="w-8 h-8 text-yellow-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+           </div>
+           <div><span class="text-yellow-500 font-bold text-lg">Juara 2</span>
+            <p class="text-gray-500 text-sm">October 2025</p>
+           </div>
+          </div>
+          <h3 class="text-white font-semibold text-lg mb-1">Olimpiade Akuntansi</h3>
+          <p class="text-gray-400 text-sm">by IDB</p>
+          <p class="text-gray-500 text-xs mt-2 italic">Klik untuk melihat sertifikat</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div>
+   </main><!-- Certificate Modal -->
+   <div id="certificateModal" class="modal-overlay fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="modal-content bg-gray-900 rounded-2xl max-w-lg w-full border border-gray-700 overflow-hidden">
+     <div class="p-4 border-b border-gray-800 flex items-center justify-between">
+      <h3 id="modalTitle" class="font-bold text-lg text-white">Sertifikat</h3><button onclick="closeModal()" class="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+       <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+       </svg></button>
+     </div>
+     <div class="p-6">
+      <div id="certificateArea" class="aspect-[4/3] bg-gray-800 rounded-xl border-2 border-dashed border-gray-600 flex flex-col items-center justify-center cursor-pointer hover:border-emerald-500 transition-colors">
+       <svg class="w-12 h-12 text-gray-500 mb-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
+       </svg>
+       <p class="text-gray-400 text-sm text-center px-4">Klik untuk upload foto piagam</p><input type="file" id="certificateInput" accept="image/*" class="hidden">
+      </div><img id="certificateImage" src="" alt="Certificate" class="hidden w-full rounded-xl">
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      name: "Hi I'm I Gusti Lanang Wicaksana",
+      title: "Accounting Student at SMK Negeri 2 Denpasar",
+      about_header: "Tentang Saya",
+      quote_text: "Accounting teaches me that every number tells a story, and every decision shapes the future.",
+      background_color: "#000000",
+      surface_color: "#111827",
+      text_color: "#ffffff",
+      primary_color: "#10b981",
+      secondary_color: "#9ca3af",
+      font_family: "Inter",
+      font_size: 16
+    };
+
+    // Certificate storage with pre-loaded URLs
+    const certificates = {
+      award1: 'https://lh3.googleusercontent.com/d/1KzEE6xMdmcpS4phqviohtXkRIF4QP9vr=s1024',
+      award2: 'https://lh3.googleusercontent.com/d/12rbmMYD12HhCIt81Yd6iAZxCyHcdkaCr=s1024',
+      award3: 'https://lh3.googleusercontent.com/d/1uUpyC1IX2pjB12_1iNtWbz6J7LkyRRq2=s1024'
+    };
+    let currentAward = null;
+
+    // Menu functionality
+    const menuBtn = document.getElementById('menuBtn');
+    const menuDropdown = document.getElementById('menuDropdown');
+    const menuItems = document.querySelectorAll('.menu-item');
+    const indicatorText = document.getElementById('indicatorText');
+    const indicatorIcon = document.getElementById('indicatorIcon');
+    
+    const menuIcons = {
+      home: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />',
+      experience: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />',
+      awards: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />'
+    };
+    
+    function updateMenuIndicator(page) {
+      indicatorText.textContent = page.charAt(0).toUpperCase() + page.slice(1);
+      indicatorIcon.innerHTML = menuIcons[page] || menuIcons.home;
+    }
+    
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menuDropdown.classList.toggle('open');
+    });
+    
+    document.addEventListener('click', () => {
+      menuDropdown.classList.remove('open');
+    });
+    
+    // Page navigation
+    const pages = {
+      home: document.getElementById('homePage'),
+      experience: document.getElementById('experiencePage'),
+      awards: document.getElementById('awardsPage')
+    };
+    
+    function showPage(pageName) {
+      Object.values(pages).forEach(page => {
+        page.classList.add('hidden');
+        page.classList.remove('active');
+      });
+      
+      const targetPage = pages[pageName];
+      if (targetPage) {
+        targetPage.classList.remove('hidden');
+        setTimeout(() => targetPage.classList.add('active'), 10);
+      }
+      
+      updateMenuIndicator(pageName);
+      menuDropdown.classList.remove('open');
+    }
+    
+    menuItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const page = item.dataset.page;
+        showPage(page);
+      });
+    });
+    
+    // Modal functionality
+    const modal = document.getElementById('certificateModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const certificateArea = document.getElementById('certificateArea');
+    const certificateInput = document.getElementById('certificateInput');
+    const certificateImage = document.getElementById('certificateImage');
+    
+    const awardTitles = {
+      award1: 'Warmadewa Accounting Competition',
+      award2: 'Olimpiade Akuntansi & Pajak UNHI',
+      award3: 'Olimpiade Akuntansi IDB'
+    };
+    
+    function openModal(awardId) {
+      currentAward = awardId;
+      modalTitle.textContent = awardTitles[awardId] || 'Sertifikat';
+      
+      if (certificates[awardId]) {
+        certificateArea.classList.add('hidden');
+        certificateImage.classList.remove('hidden');
+        certificateImage.src = certificates[awardId];
+        certificateImage.loading = 'lazy';
+        certificateImage.onerror = function() {
+          console.error('Certificate image failed to load:', this.src);
+          this.style.display = 'none';
+          certificateArea.classList.remove('hidden');
+        };
+      } else {
+        certificateArea.classList.remove('hidden');
+        certificateImage.classList.add('hidden');
+      }
+      
+      modal.classList.add('open');
+    }
+    
+    function closeModal() {
+      modal.classList.remove('open');
+      currentAward = null;
+    }
+    
+    certificateArea.addEventListener('click', () => {
+      if (!certificates[currentAward]) {
+        certificateInput.click();
+      }
+    });
+    
+    certificateImage.addEventListener('click', () => {
+      certificateInput.click();
+    });
+    
+    certificateInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file && currentAward) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          certificates[currentAward] = event.target.result;
+          certificateArea.classList.add('hidden');
+          certificateImage.classList.remove('hidden');
+          certificateImage.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Element SDK Integration
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          const nameEl = document.getElementById('nameText');
+          const titleEl = document.getElementById('titleText');
+          const aboutEl = document.getElementById('aboutHeader');
+          const quoteEl = document.getElementById('quoteText');
+          
+          if (nameEl) nameEl.textContent = config.name || defaultConfig.name;
+          if (titleEl) titleEl.textContent = config.title || defaultConfig.title;
+          if (aboutEl) aboutEl.textContent = config.about_header || defaultConfig.about_header;
+          if (quoteEl) quoteEl.textContent = config.quote_text || defaultConfig.quote_text;
+          
+          // Apply colors
+          document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
+          document.getElementById('app-wrapper').style.backgroundColor = config.background_color || defaultConfig.background_color;
+          
+          // Apply font
+          const fontFamily = config.font_family || defaultConfig.font_family;
+          document.body.style.fontFamily = `${fontFamily}, Inter, sans-serif`;
+          
+          // Apply font size
+          const baseSize = config.font_size || defaultConfig.font_size;
+          document.body.style.fontSize = `${baseSize}px`;
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+            },
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (v) => { config.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); }
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (v) => { config.secondary_color = v; window.elementSdk.setConfig({ secondary_color: v }); }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['name', config.name || defaultConfig.name],
+          ['title', config.title || defaultConfig.title],
+          ['about_header', config.about_header || defaultConfig.about_header],
+          ['quote_text', config.quote_text || defaultConfig.quote_text]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d0b79053515d47e',t:'MTc3MTU2Mzk2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
