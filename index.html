@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="id" class="h-full">
  <head>
@@ -13,19 +14,22 @@
     body { font-family: 'Inter', sans-serif; }
     .font-bebas { font-family: 'Bebas Neue', sans-serif; }
     
-    /* Typewriter effect */
-    .typewriter {
+/* Typewriter effect */
+.typewriter {
   display: inline-block;
   overflow: hidden;
   border-right: 2px solid #ffffff;
   white-space: nowrap;
   animation: typing 6s steps(85) forwards, blink 0.75s step-end infinite;
 }
-   @media (max-width: 640px) {
+/* Responsive untuk HP */
+@media (max-width: 640px) {
   .typewriter {
-    font-size: 0.9rem;
-    line-height: 1.5;
- @keyframes typing {
+    font-size: 0.85rem;
+  }
+}
+
+@keyframes typing {
   from { width: 0 }
   to { width: 85ch }
 }
@@ -154,8 +158,8 @@
         <p>Bagi saya, setiap proses pembelajaran adalah kesempatan untuk bertumbuh. Dengan semangat disiplin, kerja keras, dan kemauan untuk terus berkembang, saya siap menghadapi tantangan serta mempersiapkan diri untuk masa depan yang lebih baik di bidang akuntansi dan ekonomi.</p>
        </div>
       </div><!-- Quote with Typewriter Effect -->
-     <div class="bg-gradient-to-r from-gray-800/30 to-transparent rounded-xl p-6 border-l-4 border-white overflow-x-auto">
-       <div class="flex items-start gap-3">
+      <div class="bg-gradient-to-r from-gray-800/30 to-transparent rounded-xl p-6 border-l-4 border-white overflow-x-auto">
+ <div class="flex items-start gap-3">
         <svg class="w-8 h-8 text-white flex-shrink-0 mt-1" fill="currentColor" viewbox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
         </svg>
         <p id="quoteText" class="typewriter text-gray-200 italic text-sm md:text-base">Accounting teaches me that every number tells a story, and every decision shapes the future.</p>
