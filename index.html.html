@@ -14,20 +14,33 @@
     .font-bebas { font-family: 'Bebas Neue', sans-serif; }
     
     /* Typewriter effect */
-    .typewriter {
-      overflow: hidden;
-      border-right: 2px solid #ffffff;
-      white-space: nowrap;
-      animation: typing 4s steps(100, end) infinite, blink 0.75s step-end infinite;
-    }
-    @keyframes typing {
-      0%, 100% { width: 0; }
-      50%, 90% { width: 100%; }
-    }
-    @keyframes blink {
-      from, to { border-color: transparent; }
-      50% { border-color: #ffffff; }
-    }
+  /* ===== TYPEWRITER LOOP RESPONSIVE STABLE ===== */
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid #ffffff;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 6s steps(60) infinite alternate,
+             blink 0.8s infinite;
+}
+
+/* Gunakan 100% supaya ikut lebar teks */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Responsive HP */
+@media (max-width: 640px) {
+  .typewriter {
+    font-size: 0.85rem;
+  }
+}
     
     /* Smooth transitions */
     .page-section {
