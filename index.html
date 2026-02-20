@@ -79,6 +79,10 @@
     ::-webkit-scrollbar-track { background: #1a1a1a; }
     ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+   @keyframes blink {
+  0%,100% { opacity:1; }
+  50% { opacity:0; }
+}
   </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -408,7 +412,9 @@
           if (nameEl) nameEl.textContent = config.name || defaultConfig.name;
           if (titleEl) titleEl.textContent = config.title || defaultConfig.title;
           if (aboutEl) aboutEl.textContent = config.about_header || defaultConfig.about_header;
-          if (quoteEl) quoteEl.textContent = config.quote_text || defaultConfig.quote_text;
+          if (quoteEl && !quoteEl.classList.contains("typing-active")) {
+  quoteEl.textContent = config.quote_text || defaultConfig.quote_text;
+}
           
           // Apply colors
           document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
@@ -466,34 +472,41 @@
   </script>
   <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const textElement = document.getElementById("quoteText");
-  const fullText = textElement.textContent;
-  textElement.textContent = "";
+  const el = document.getElementById("quoteText");
+ el.classList.add("typing-active");
+  const fullText = el.textContent;
+  el.textContent = "";
 
-  let index = 0;
-  let isDeleting = false;
+  let i = 0;
+  let deleting = false;
 
-  function typeEffect() {
-    if (!isDeleting) {
-      textElement.textContent = fullText.substring(0, index + 1);
-      index++;
+  function loop() {
 
-      if (index === fullText.length) {
-        setTimeout(() => isDeleting = true, 2000); // jeda 2 detik
+    if (!deleting) {
+      el.innerHTML = fullText.substring(0, i) + 
+        '<span style="animation:blink 1s infinite;">|</span>';
+      i++;
+
+      if (i > fullText.length) {
+        deleting = true;
+        setTimeout(loop, 1500);
+        return;
       }
-    } else {
-      textElement.textContent = fullText.substring(0, index - 1);
-      index--;
 
-      if (index === 0) {
-        isDeleting = false;
+    } else {
+      el.innerHTML = fullText.substring(0, i) + 
+        '<span style="animation:blink 1s infinite;">|</span>';
+      i--;
+
+      if (i < 0) {
+        deleting = false;
       }
     }
 
-    setTimeout(typeEffect, isDeleting ? 35 : 60);
+    setTimeout(loop, deleting ? 35 : 60);
   }
 
-  typeEffect();
+  loop();
 });
 </script>
   
